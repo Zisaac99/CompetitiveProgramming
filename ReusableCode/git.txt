@@ -2,7 +2,11 @@ git pull
 
 git checkout -b "branch name"
 
+/ Commiting changes
 git add .
 git commit -m "Message"
 git push origin "branch name"
 
+/Merge branches
+git checkout master
+git merge "branch name"
