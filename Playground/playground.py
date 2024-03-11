@@ -127,23 +127,106 @@
 
 # print(coinsHMW(amount,0))
 
-strs = ['flow']
+# nums = [-1,0,1,2,-1,-4] 
+# ans = []
+# ht = {}
+
+# for i in nums:
+#     if i in ht:
+#         ht[i] += 1
+#     else:
+#         ht[i] = 1
+
+# keys = list(ht.keys())
+
+# for i in range(len(keys)):
+#     temp_i = ht[keys[i]]
+#     ht[keys[i]] -= 1
+#     for j in range(i,len(keys)):
+#         temp_j = ht[keys[j]]
+#         if ht[keys[j]] > 0:
+#             ht[keys[j]] -= 1
+#             diff = -keys[i] - keys[j]
+#             if diff in ht and ht[diff] > 0:
+#                 ans.append(sorted([keys[i],keys[j],diff]))
+#         ht[keys[j]] = temp_j
+#     ht[keys[i]] = temp_i
+
+# ans = [list(x) for x in set(tuple(x) for x in ans)]
+# print(ans)
 
 
-def conquer(str1,str2):
-    ans = ''
-    for i in range(min(len(str1),len(str2))):
-        if str1[i] != str2[i]:
-            break
-        ans += str1[i]
+# numbers = [-1,0]
+# target = -1
+
+# def twoSum(numbers, target):
+#     start = 0
+#     end = len(numbers) - 1
+
+#     ans = None
+
+#     while not ans:
+#         if numbers[start] + numbers[end] == target:
+#             return [start+1,end+1]
+#         elif numbers[start] + numbers[end] > target:
+#             end -= 1
+#         else:
+#             start += 1
+
+# print(twoSum(numbers,target))
+
+# nums = [0,0,0,0]
+# nums.sort()
+# ans = []
+
+# for i in range(len(nums)):
+#     if i > 0 and nums[i] == nums[i-1]:
+#         continue
+
+#     start,end = i + 1,len(nums) - 1
+#     ht = {}
+#     while start < end:
+#         twosum = nums[start] + nums[end]
+
+#         if twosum < -nums[i]:
+#             start += 1
+#         elif twosum > -nums[i]:
+#             end -= 1
+#         else:
+#             end -= 1
+#             if nums[end] in ht:
+#                 continue
+#             ans.append([nums[i],nums[start],nums[end]])
+#             ht[nums[end]] = 0
+
+def func(nums,target):
+    nums.sort()
+    ans = []
+
+    for j in range(len(nums)):
+        if j > 0 and nums[j] == nums[j-1]:
+            continue
+        for i in range(j+1,len(nums)):
+            if i > j+1 and nums[i] == nums[i-1]:
+                continue
+            start,end = i + 1,len(nums) - 1
+            while start < end:
+                foursum = nums[j] + nums[i] + nums[start] + nums[end]
+
+                if foursum < target:
+                    start += 1
+                elif foursum > target:
+                    end -= 1
+                else:
+                    print(j,i,start,end)
+                    ans.append([nums[j],nums[i],nums[start],nums[end]])
+                    start += 1
+                    end -= 1
+
+                    while start < end and nums[end] == nums[end+1]:
+                        end -= 1
     return ans
 
-def DivideandConquer(list):
-    if len(list) < 2:
-        return list[0]
-    
-    n = len(list) // 2
-
-    return conquer(DivideandConquer(list[n:]),DivideandConquer(list[:n]))
-
-print(DivideandConquer(strs))
+arr = [2,2,2,2,2]
+t = 8
+print(func(arr,t))
