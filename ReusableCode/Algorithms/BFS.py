@@ -25,6 +25,7 @@ class Graph:
 		queue.append([start,[start]])
 
 		while queue:
+			print(queue)
 			curr = queue.pop(0)
 			visited.append(curr[0])
 			if curr[0] == value:
@@ -83,5 +84,5 @@ g.addEdge(3, 3)
 
 # print ("Following is Breadth First Traversal"
 # 				" (starting from vertex 2)")
-g.BFS(2)
+# g.BFS(2)
 print(g.BFS_Path(0,3))
