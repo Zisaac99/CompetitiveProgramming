@@ -199,79 +199,10 @@
 #             ans.append([nums[i],nums[start],nums[end]])
 #             ht[nums[end]] = 0
 
-def kSum(arr, target,k):
-    ans = []
-
-    if not arr or len(arr) < 2:
-        return ans
-    
-    if arr[0] > (target / k):
-        return ans
-    
-    if arr[-1] < (target / k):
-        return ans
-    
-    if k == 2:
-        return twoSum(arr,target)
-    
+x= [i for i in range(10)]
+def check(arr,x):
     for i in range(len(arr)):
-        if i > 0 and arr[i] == arr[i-1]:
-            continue
-        print()
-        for subset in kSum(arr[i+1:],target - arr[i],k - 1):
-            ans.append([arr[i]] + subset)
-    
-    return ans
-
-def twoSum(arr,target):
-    start = 0
-    end = len(arr) - 1
-    store = []
-    while start < end:
-        sum = arr[start] + arr[end]
-        if sum == target:
-            store.append([arr[start],arr[end]])
-            start += 1
-            end -= 1
-
-            while start < end and arr[end] == arr[end+1]:
-                end -= 1
-
-        elif sum < target:
-            start += 1
-        else:
-            end -= 1
-    return store
-
-# Using a Python dictionary to act as an adjacency list
-graph = {
-  '5' : ['3','7'],
-  '3' : ['2', '4'],
-  '7' : ['8'],
-  '2' : ['9'],
-  '4' : ['8','9'],
-  '8' : [],
-  '9' : []
-}
-
-visited = set() # Set to keep track of visited nodes of graph.
-def dfs(visited, graph, node,path,target):  #function for dfs
-    path.append(node) 
-    if node == target:
-        return path
-    
-    if node not in visited:
-        visited.add(node)
-        for neighbour in graph[node]:
-            return dfs(visited, graph, neighbour,path,target)
-
-# target = '9'
-# print(dfs(visited, graph, '5',[],target))
-
-# a = [[0,1],[1,0]]
-
-l1 = None
-l2 = None
-
-x = l1 or l2
-print(x)
+        if i < 0:
+            return False
+        
+    return True

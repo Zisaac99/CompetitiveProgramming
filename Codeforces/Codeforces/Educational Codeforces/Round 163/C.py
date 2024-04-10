@@ -1,3 +1,5 @@
+########################### First Solution ###########################
+
 # t = int(input())
 # for _ in range(t):
 #     n = int(input())
@@ -39,6 +41,49 @@
 #                     queue.append((x,y - 1))
 #     print(ans)
 
+
+########################### Second Solution ###########################
+# t = int(input())
+# for _ in range(t):
+#     n = int(input())
+    
+#     arr = []
+#     arr.append(list(input()))
+#     arr.append(list(input()))
+    
+#     ans = 'NO'
+    
+#     target = (1,n-1)
+#     queue = []
+#     visited = set()
+#     queue.append((0,0))
+ 
+#     while queue:
+#         curr_index = queue.pop(0)
+#         if curr_index == target:
+#             ans = 'YES'
+#             break
+#         else:
+#             next = []
+#             if curr_index[0] == 0:
+#                 next = [(1,curr_index[1]),(0,curr_index[1]+1)]
+#             else:
+#                 next = [(0,curr_index[1]),(1,curr_index[1]+1)]
+ 
+#             for i in next:
+#                 #print(f'Current: {curr_index} , Next: {i} , Arrow: {arr[i[0]][i[1]]}, Potential Next: {(i[0],i[1]+1)}')
+#                 if i not in visited:
+#                     visited.add(i)
+#                     if i == target:
+#                         ans = 'YES'
+#                         break
+#                     if arr[i[0]][i[1]] == '>':
+#                         visited.add((i[0],i[1]+1))
+#                         queue.append((i[0],i[1]+1))
+                    
+                
+#     print(ans)
+
 t = int(input())
 for _ in range(t):
     n = int(input())
@@ -46,36 +91,11 @@ for _ in range(t):
     arr = []
     arr.append(list(input()))
     arr.append(list(input()))
-    
-    ans = 'NO'
-    
-    target = (1,n-1)
-    queue = []
-    visited = set()
-    queue.append((0,0))
- 
-    while queue:
-        curr_index = queue.pop(0)
-        if curr_index == target:
-            ans = 'YES'
+    ans = 'YES'
+
+    for i in range(len(arr[0]) - 1):
+        if ((arr[0][i] == '<' and ((0+i) % 2 == 1)) and (arr[1][i+1] == '<' and ((1+i+1) % 2 == 1))) or ((arr[0][i+1] == '<' and ((0+i+1) % 2 == 1)) and (arr[1][i] == '<' and ((1+i) % 2 == 1))):
+            ans = 'NO'
             break
-        else:
-            next = []
-            if curr_index[0] == 0:
-                next = [(1,curr_index[1]),(0,curr_index[1]+1)]
-            else:
-                next = [(0,curr_index[1]),(1,curr_index[1]+1)]
- 
-            for i in next:
-                #print(f'Current: {curr_index} , Next: {i} , Arrow: {arr[i[0]][i[1]]}, Potential Next: {(i[0],i[1]+1)}')
-                if i not in visited:
-                    visited.add(i)
-                    if i == target:
-                        ans = 'YES'
-                        break
-                    if arr[i[0]][i[1]] == '>':
-                        visited.add((i[0],i[1]+1))
-                        queue.append((i[0],i[1]+1))
-                    
-                
+
     print(ans)
