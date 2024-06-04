@@ -1,19 +1,7 @@
-class Solution:
-    def maxSubArray(self, nums):
-        prev = 0
-        ans = float('-inf')
-        for i in range(len(nums)):
-            prev = max(prev + nums[i],nums[i])
-            ans = max(prev, ans)
-
-        print(ans)
+x = 500
+dp = [0,1] + [0] * (x-1)
 
 
-s = Solution()
-s.maxSubArray([-2])
-
-s = [(1,2,3),(8,8,8)]
-print(s.index((8,8,8)))
-
-
-
+for i in range(2,x+1):
+    dp[i] = dp[i-1] + dp[i-2]
+print(dp[x])
