@@ -1,13 +1,14 @@
 import java.util.*;
 
-public class sandbox{
+public class arrays{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
 
-        //System.out.printf("Sum of array is: %d",sumOfNumbersInArray(numbers));
-        //printNeatly(numbers);
-        //printArrayInStars(numbers);
-
+        //int[] numbers = new int[5];
+        int[] numbers = {5, 1, 3, 4, 2};
+        System.out.printf("Sum of array is: %d",sumOfNumbersInArray(numbers));
+        printNeatly(numbers);
+        printArrayInStars(numbers);
     }
 
     public static void printArrayVal(int[] arr){
